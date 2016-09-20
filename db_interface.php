@@ -49,7 +49,7 @@ class Database {
 
  		$param = array();
 
-		return executeQuery($query, $param);
+		return $this->executeQuery($query, $param);
 
 	}
 
