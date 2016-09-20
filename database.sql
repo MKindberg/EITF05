@@ -9,20 +9,21 @@ CREATE TABLE users
   username char(15),
   password char(30) NOT NULL,
   adress char(30),
-  salt char(16)
-  PRIMARY KEY(username)
+  salt char(16),
+  PRIMARY KEY (username)
 );
 
 CREATE TABLE products
 (
-  productId int,
+  productId int auto_increment,
   name char(15),
   description char(100),
   price int,
-  color char(30)
-  PRIMARY KEY(productId)
+  color char(30),
+  PRIMARY KEY (productId)
 );
 
 
 
 INSERT INTO Users VALUES ("AAAA", "aaa", "AAAAAb", "AA");
+INSERT INTO Products VALUES( 0, "Blue", "Nice blue" "9", "blue"); 
