@@ -1,0 +1,35 @@
+#navbar{
+    background-color: pink;
+    height: 45px;
+    position: fixed;
+    margin:auto;
+    width: 50%;
+    border: 2px solid black;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#navbar p {
+    display: inline;
+    float: left;
+    margin-left: 50px;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+#navbar ul {
+    display: inline;
+    float: right;
+    margin-right: 40px;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+#navbar li {
+    display: inline;
+    padding: 10px;
+}
+
+#navbar li:hover {
+    background-color: red;
+}
