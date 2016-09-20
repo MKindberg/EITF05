@@ -1,26 +1,46 @@
-<?php 
+<?php
 
 include "header.html";
+include db_interface.php;
+  if(isset($_REQUEST['submit'])!=''){
+    if($_REQUEST['name']=='' || $_REQUEST['email']=='' || $_REQUEST['password']==''|| $_REQUEST['repassword']=='')
+    {
+      Echo "please fill the empty field.";
+    }
+    else{
+      $sql="insert into users(name,password,adress) values('".$_REQUEST['name']."', '".$_REQUEST['password']."', '".$_REQUEST['adress']."')";
+      $res=mysql_query($sql);
+      if($res){
+        Echo "Record successfully inserted";
+      }
+      else{
+        Echo "There is some problem in inserting record";
+      }
+    }
+  }
 
 ?>
 
-
-<!DOCTYPE html>
 <html>
 <head>
 <title>Webshop - Sign up</title>
 </head>
 <body>
   <h1>Sign up!</h1>
-  <form>
-    Username:<br>
-    <input type="text" name="username"><br>
-    Password:<br>
-    <input type="password" name="password"><br>
-    confirm password:<br>
-    <input type="password" name="password2"><br>
-    Home address:<br>
-    <input type="text" name="address"><br>
-    <input type="submit" value="Create acount">
+
+  <form name="registration" method="post" action="singUp.php">
+  USERNAME:</br>
+  <input type="text" name="name" value=""></br>
+  ADRESS:</br>
+  <input type="text" name="adress" value=""></br>
+  PASSWORD:</br>
+  <input type="text" name="password" value=""></br>
+  <input type="submit" name="submit" value="submit">
+  </form>
+
+
+
+
+
 </body>
 </html>
