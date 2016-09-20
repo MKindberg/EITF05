@@ -88,5 +88,23 @@ class Database {
 		return $affected_rows;
 	}
 
+/**
+TODO: here should all the hash-comparing and stuff happen
+*/
+	public function login($userId) {
+			$sql = "SELECT username FROM users WHERE username = ?";
+			$result = $this->executeQuery ( $sql, array (
+					$userId
+			) );
+			return count ( $result ) == 1;
+		}
+	/**
+
+
+
+	*/
+
+
+
 }
 ?>

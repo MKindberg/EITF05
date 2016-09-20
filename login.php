@@ -10,9 +10,8 @@ if (! $db->isConnected ()) {
 }
 
 
-/*
-TODO: handle login fail
-*/
+
+
 $userId = $_REQUEST ['userId'];
 if (! $db->userExists ( $userId )) {
 	$db->closeConnection ();
@@ -22,9 +21,7 @@ if (! $db->userExists ( $userId )) {
 $db->closeConnection ();
 
 
-/*
-TODO: handle login sucess
-*/
+
 session_start ();
 $_SESSION ['db'] = $db;
 $_SESSION ['userId'] = $userId;
