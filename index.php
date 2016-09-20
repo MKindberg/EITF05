@@ -4,7 +4,7 @@ include "header.html";
 include "db_interface.php"; 
 include "mysql_login_data.php"; // unsafe to have login data here?
 
-$database new Database( $host,$userName, $password, $database);
+$database = new Database( $host,$userName, $password, $database);
 $database->openConnection();
 
 
