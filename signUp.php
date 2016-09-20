@@ -1,9 +1,9 @@
 <?php
 
 include "header.html";
-include db_interface.php;
+include "db_interface.php";
   if(isset($_REQUEST['submit'])!=''){
-    if($_REQUEST['name']=='' || $_REQUEST['email']=='' || $_REQUEST['password']==''|| $_REQUEST['repassword']=='')
+    if($_REQUEST['name']=='' || $_REQUEST['adress']=='' || $_REQUEST['password']==''|| $_REQUEST['repassword']=='')
     {
       Echo "please fill the empty field.";
     }
@@ -28,13 +28,15 @@ include db_interface.php;
 <body>
   <h1>Sign up!</h1>
 
-  <form name="registration" method="post" action="singUp.php">
+  <form name="registration" method="post" action="signUp.php">
   USERNAME:</br>
   <input type="text" name="name" value=""></br>
   ADRESS:</br>
   <input type="text" name="adress" value=""></br>
   PASSWORD:</br>
   <input type="text" name="password" value=""></br>
+  RE-Enter  PASSWORD:</br>
+  <input type="text" name="repassword" value=""></br>
   <input type="submit" name="submit" value="submit">
   </form>
 
