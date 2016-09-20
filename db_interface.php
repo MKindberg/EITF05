@@ -43,6 +43,16 @@ class Database {
 		return isset ( $this->conn );
 	}
 
+	public function getAllProducts() {
+
+		$query = "SELECT * FROM products";
+
+ 		$param = array();
+
+		return executeQuery($query, $param);
+
+	}
+
 	/**
 	 * Execute a database query (select).
 	 *
