@@ -13,7 +13,32 @@ class Database {
 		$this->password = $password;
 		$this->database = $database;
 	}
-
+	
+	public function signUp($userName, $password, $adress){
+		
+	}
+	
+	private function userExists(){
+		
+	}
+	
+	private function generateSalt(){
+		
+	}
+	
+	public function signIn(){
+		
+	}
+	
+	public function getItem($productId){
+		
+	}
+	
+	public function signOut(){
+		
+	}
+	
+	
 
 	public function openConnection() {
 		try {
