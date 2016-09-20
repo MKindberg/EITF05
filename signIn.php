@@ -19,6 +19,5 @@ include "header.html";
     <input type="password" name="password"><br>
     <input type="submit" value="Sign in">
   </form>
-  <a  href="signUp.html"><button>Sign up</button></a>
 </body>
 </html>
