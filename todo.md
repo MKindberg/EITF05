@@ -12,5 +12,5 @@
  - Lägg till gästbok-sida 
  
  
- 
+ - hash/salt genereras till samma sträng, ändra databas till samma fält
  

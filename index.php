@@ -23,11 +23,11 @@ $result = $database->getAllProducts();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Webshop</title>
+<title>Webshop EITF05 project</title>
 </head>
 <body>
 
-<h1>Shop Name</h1>
+<h1>Products</h1>
 <div class="product_container"></div>
  
 <?php    

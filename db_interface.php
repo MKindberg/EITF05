@@ -14,12 +14,81 @@ class Database {
 		$this->database = $database;
 	}
 	
-	public function signUp($userName, $password, $adress){
+	public function signUp(){
+ 
+		$regName = $regAdress = $regPassword = $regRepassword = "";
+
+		$regName = $_POST['regName'];
+		$regAdress = $_POST['regAdress'];
+		$regPassword = $_POST['regPassword'];
+		$regRepassword = $_POST['regRepassword'];
+
+	
+		//check that all fields are filled
+		if ($regName == "" || $regAdress == "" || $regPassword == "" || $regRepassword == "" ) {
+			return "All fields must be filled in";
+		}
+
+		//check passwords match
+		if ($regPassword != $regRepassword) {
+			return "Password's mismatch...";
+		}
+	
+		//validate inputs
+		$regName  = $this->validateInput($regName);
+		$regAdress = $this->validateInput($regAdress);
+		$regPassword = $this->validateInput($regPassword);
+		$regRepassword = $this->validateInput($regRepassword);
+
+		//password constraints
+		//add regex or something that checks password-length etc..
+
+		//more checks?
+
+		//connecting to database
+		$this->openConnection();
+		if(! $this->isConnected()) {
+ 			 return "Could not connect to database..";
+		}
+
+
+		//check if user exists		
+		if (!$this->userExists($regName)) {
+			return "Username already exists.. Pick another one.";
+		}
+
+		//generate hash + salt
+		$hashAndSalt = password_hash($regPassword, PASSWORD_DEFAULT);
+		echo $hashAndSalt;
+
+		$this->addUser($regName,$regAdress,$hashAndSalt);
+
+		//print all inputs (just for testing)
+		$msg = $regName . $regAdress . $regPassword . $regRepassword;
+		return $msg;
 		
+	}
+
+	private function addUser($regName,$regAdress,$hashAndSalt) {
+
+	}
+
+	private function validateInput($input) {
+
+	
+		$input = trim($input); //removes extra spaces, tabs, newlines..
+		$input = stripslashes($input); //remove backslashes
+		$input = htmlspecialchars($input); //preventing "tagged" input..<script> etc.
+		
+
+		return $input;
+
+		
+
 	}
 	
 	private function userExists(){
-		
+		return true;
 	}
 	
 	private function generateSalt(){
@@ -59,7 +128,7 @@ class Database {
 		unset ( $this->conn );
 	}
 
-	/**
+	/*
 
 
 	 * @return true if the connection has been established
@@ -123,7 +192,7 @@ class Database {
 		return $affected_rows;
 	}
 
-/**
+/*
 TODO: here should all the hash-comparing and stuff happen
 */
 	public function login($userId) {
@@ -133,7 +202,7 @@ TODO: here should all the hash-comparing and stuff happen
 			) );
 			return count ( $result ) == 1;
 		}
-	/**
+	/*
 
 
 

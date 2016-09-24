@@ -2,22 +2,16 @@
 
 include "header.html";
 include "db_interface.php";
-  if(isset($_REQUEST['submit'])!=''){
-    if($_REQUEST['name']=='' || $_REQUEST['adress']=='' || $_REQUEST['password']==''|| $_REQUEST['repassword']=='')
-    {
-      Echo "please fill the empty field.";
+include "mysql_login_data.php"; 
+
+    if(isset($_POST['register'])) {
+
+      //check all fields filled
+      $database = new Database( $host,$userName, $password, $database);
+      $msg = $database->signUp();
+
+      echo $msg;
     }
-    else{
-      $sql="insert into users(name,password,adress) values('".$_REQUEST['name']."', '".$_REQUEST['password']."', '".$_REQUEST['adress']."')";
-      $res=mysql_query($sql);
-      if($res){
-        Echo "Record successfully inserted";
-      }
-      else{
-        Echo "There is some problem in inserting record";
-      }
-    }
-  }
 
 ?>
 
@@ -26,19 +20,20 @@ include "db_interface.php";
 <title>Webshop - Sign up</title>
 </head>
 <body>
-  <h1>Sign up!</h1>
+  <h3>Sign up!</h3>
 
   <form name="registration" method="post" action="signUp.php">
-  USERNAME:</br>
-  <input type="text" name="name" value=""></br>
-  ADRESS:</br>
-  <input type="text" name="adress" value=""></br>
-  PASSWORD:</br>
-  <input type="text" name="password" value=""></br>
-  RE-Enter  PASSWORD:</br>
-  <input type="text" name="repassword" value=""></br>
-  <input type="submit" name="submit" value="submit">
+  Username * </br>
+  <input type="text" name="regName" value=""></br>
+  Adress *</br>
+  <input type="text" name="regAdress" value=""></br>
+  Password *</br>
+  <input type="password" name="regPassword" value=""></br>
+  Re-enter  Password *</br>
+  <input type="password" name="regRepassword" value=""></br>
+  <input type="submit" value="Sign up" name="register">
   </form>
+  <p class="small-text">(* = required) </p>
 
 
 
