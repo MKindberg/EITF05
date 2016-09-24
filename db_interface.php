@@ -41,16 +41,15 @@ class Database {
 		$regRepassword = $this->validateInput($regRepassword);
 
 		//password constraints
-		//add regex or something that checks password-length etc..
+		//add regex or something that checks password-length, different symbols etc..
 
-		//more checks?
+		//more checks before involving database?
 
 		//connecting to database
 		$this->openConnection();
 		if(! $this->isConnected()) {
  			 return "Could not connect to database..";
 		}
-
 
 		//check if user exists		
 		if ($this->userExists($regName)) {
@@ -61,28 +60,34 @@ class Database {
 		$hashAndSalt = password_hash($regPassword, PASSWORD_DEFAULT);
 		echo "<br> Hash and Salt: " . $hashAndSalt . "<br>";
 
-		$this->addUser($regName,$regAdress,$hashAndSalt);
-
+		//adding user to database
+		$msg = $this->addUser($regName,$hashAndSalt,$regAdress);
+		
 		//print all inputs (just for testing)
-		$msg = $regName . $regAdress . $regPassword . $regRepassword;
+		//$msg = $regName . $regAdress . $regPassword . $regRepassword;
 		return $msg;
 		
 	}
 
-	private function addUser($regName,$regAdress,$hashAndSalt) {
+	private function addUser($regName,$hashAndSalt,$regAdress) {
 
+		$query = "INSERT into users values(?,?,?);";
+		$params = array();
+		array_push($params,$regName,$hashAndSalt,$regAdress);
+		$result = $this->executeUpdate($query,$params);
+		return "Successfully signed up " . " Username : ". $regName . " Adress : " . $regAdress;
 	}
 
 	private function validateInput($input) {
 
-	
+		//add more validations?
+
 		$input = trim($input); //removes extra spaces, tabs, newlines..
 		$input = stripslashes($input); //remove backslashes
 		$input = htmlspecialchars($input); //preventing "tagged" input..<script> etc.
 		
 
 		return $input;
-
 		
 
 	}
@@ -90,16 +95,14 @@ class Database {
 	private function userExists($username){
 
 		$query = "SELECT username FROM users WHERE username =?";
- 		$result = $this->executeQuery ( $sql, array (
-				$username 
-		) );
+		$param = array ();
+		array_push ( $param, $username );
+
+ 		$result = $this->executeQuery ( $query,$param);
 
 		return count ( $result ) == 1;
 	}
 	
-	private function generateSalt(){
-		
-	}
 	
 	public function signIn(){
 		
@@ -171,6 +174,7 @@ class Database {
 			$error = "*** Internal error: " . $e->getMessage () . "<p>" . $query;
 			die ( $error );
 		}
+
 		return $result;
 	}
 
