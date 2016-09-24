@@ -53,13 +53,13 @@ class Database {
 
 
 		//check if user exists		
-		if (!$this->userExists($regName)) {
+		if ($this->userExists($regName)) {
 			return "Username already exists.. Pick another one.";
 		}
 
 		//generate hash + salt
 		$hashAndSalt = password_hash($regPassword, PASSWORD_DEFAULT);
-		echo $hashAndSalt;
+		echo "<br> Hash and Salt: " . $hashAndSalt . "<br>";
 
 		$this->addUser($regName,$regAdress,$hashAndSalt);
 
@@ -87,8 +87,14 @@ class Database {
 
 	}
 	
-	private function userExists(){
-		return true;
+	private function userExists($username){
+
+		$query = "SELECT username FROM users WHERE username =?";
+ 		$result = $this->executeQuery ( $sql, array (
+				$username 
+		) );
+
+		return count ( $result ) == 1;
 	}
 	
 	private function generateSalt(){

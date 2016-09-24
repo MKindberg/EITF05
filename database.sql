@@ -7,9 +7,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE users
 (
   username char(15),
-  password char(30) NOT NULL,
+  hash char(72) NOT NULL, #hash and salt is included here
   adress char(30),
-  salt char(16),
   PRIMARY KEY (username)
 );
 
