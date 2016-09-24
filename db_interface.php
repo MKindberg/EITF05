@@ -115,16 +115,35 @@ class Database {
 	}
 
 
+//TODO remane variables?
 	public function signIn(){
 
+		$name = $password = "";
+
+		$name = $_POST['name'];
+		$password = $_POST['password'];
+
+		$this->openConnection();
+		if(! $this->isConnected())
+ 			 return "Could not connect to database..";
+
+		if(! $this->userExists($name))
+			return "User " . $name . " doesn't exist";
+
+			//get Salt
+			//hashAndSalt
+			//check hashAndSalted pwd
+			//set login in cookie to ture (or 1)
+	$this->closeConnection;
 	}
 
 	public function getItem($productId){
-
+		//open connection
+		//return product if exists, else error
 	}
 
 	public function signOut(){
-
+		//set login in cookie to false(or 0)
 	}
 
 
