@@ -13,9 +13,11 @@ class Database {
 		$this->password = $password;
 		$this->database = $database;
 	}
-	
+
 	public function signUp(){
- 
+
+		$pwdMinLen = 8;
+
 		$regName = $regAdress = $regPassword = $regRepassword = "";
 
 		$regName = $_POST['regName'];
@@ -23,7 +25,7 @@ class Database {
 		$regPassword = $_POST['regPassword'];
 		$regRepassword = $_POST['regRepassword'];
 
-	
+
 		//check that all fields are filled
 		if ($regName == "" || $regAdress == "" || $regPassword == "" || $regRepassword == "" ) {
 			return "All fields must be filled in";
@@ -33,7 +35,7 @@ class Database {
 		if ($regPassword != $regRepassword) {
 			return "Password's mismatch...";
 		}
-	
+
 		//validate inputs
 		$regName  = $this->validateInput($regName);
 		$regAdress = $this->validateInput($regAdress);
@@ -42,6 +44,15 @@ class Database {
 
 		//password constraints
 		//add regex or something that checks password-length, different symbols etc..
+		if(strlen($regPassword)<$pwdMinLen)
+			return "Password must be at least " . $pwdMinLen . " characters";
+
+		if(!preg_match("/\d/", $regPassword))
+			return "Password must contain at least one digit";
+		else if(!preg_match("/\W/", $regPassword))
+			return "Password must contain at least one special character";
+		else if(!preg_match("/[a-z]/", $regPassword) or !preg_match("/[A-Z]/", $regPassword))
+			return "Password must contain both upper- and lowercase letters";
 
 		//more checks before involving database?
 
@@ -51,7 +62,7 @@ class Database {
  			 return "Could not connect to database..";
 		}
 
-		//check if user exists		
+		//check if user exists
 		if ($this->userExists($regName)) {
 			return "Username already exists.. Pick another one.";
 		}
@@ -62,11 +73,11 @@ class Database {
 
 		//adding user to database
 		$msg = $this->addUser($regName,$hashAndSalt,$regAdress);
-		
+
 		//print all inputs (just for testing)
 		//$msg = $regName . $regAdress . $regPassword . $regRepassword;
 		return $msg;
-		
+
 	}
 
 	private function addUser($regName,$hashAndSalt,$regAdress) {
@@ -85,13 +96,13 @@ class Database {
 		$input = trim($input); //removes extra spaces, tabs, newlines..
 		$input = stripslashes($input); //remove backslashes
 		$input = htmlspecialchars($input); //preventing "tagged" input..<script> etc.
-		
+
 
 		return $input;
-		
+
 
 	}
-	
+
 	private function userExists($username){
 
 		$query = "SELECT username FROM users WHERE username =?";
@@ -102,21 +113,21 @@ class Database {
 
 		return count ( $result ) == 1;
 	}
-	
-	
+
+
 	public function signIn(){
-		
+
 	}
-	
+
 	public function getItem($productId){
-		
+
 	}
-	
+
 	public function signOut(){
-		
+
 	}
-	
-	
+
+
 
 	public function openConnection() {
 		try {
