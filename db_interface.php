@@ -74,7 +74,7 @@ class Database {
 
 		//adding user to database
 		$msg = $this->addUser($regName,$hashAndSalt,$regAdress);
-
+        $_SESSION["loggedIn"] = $username;
 		//print all inputs (just for testing)
 		//$msg = $regName . $regAdress . $regPassword . $regRepassword;
 		return $msg;
@@ -137,7 +137,7 @@ class Database {
 
 		if(password_verify($password, $this->getHash($username))){
             $this->closeConnection();
-            $_SESSION["loggedIn"] = 1;
+            $_SESSION["loggedIn"] = $username;
             return "Login Successfull!";
         }
 
