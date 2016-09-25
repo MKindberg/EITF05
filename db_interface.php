@@ -133,8 +133,8 @@ class Database {
 			//get Salt
 			//hashAndSalt
 			//check hashAndSalted pwd
-			//set login in cookie to ture (or 1)
-	$this->closeConnection;
+        setcookie("logged in", "", time() + (3600), "/"); //set cookie for one hour
+	    $this->closeConnection;
 	}
 
 	public function getItem($productId){
@@ -143,7 +143,7 @@ class Database {
 	}
 
 	public function signOut(){
-		//set login in cookie to false(or 0)
+		setcookie("logged in", "", time()-3600); //removes cookie
 	}
 
 

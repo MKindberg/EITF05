@@ -1,7 +1,7 @@
 <?php
 
-include "header.html";
-include "db_interface.php"; 
+include "header.php";
+include "db_interface.php";
 include "mysql_login_data.php"; // unsafe to have login data here?
 
 $database = new Database( $host,$userName, $password, $database);
@@ -29,10 +29,10 @@ $result = $database->getAllProducts();
 
 <h1>Products</h1>
 <div class="product_container"></div>
- 
-<?php    
+
+<?php
 foreach ( $result as $row ) {
-     
+
     /*
     echo $row[0]; // productId
     echo $row[1]; // name
@@ -40,7 +40,7 @@ foreach ( $result as $row ) {
     echo $row[3]; // price
     echo $row[4]; //color
     */
-     
+
 echo "
     <div class=\"product-div\">
     <div class=\"color-image\" style=\"background-color:$row[4]\"></div>
@@ -49,7 +49,7 @@ echo "
     <p class=\"product-price\">Price: $row[3]</p>
     <a href=\"#\"><button>Add to cart</button></a>
     </div>";
-     
+
 }
 ?>
 

@@ -1,8 +1,8 @@
 <?php
 
-include "header.html";
+include "header.php";
 include "db_interface.php";
-include "mysql_login_data.php"; 
+include "mysql_login_data.php";
 
     if(isset($_POST['register'])) {
 
