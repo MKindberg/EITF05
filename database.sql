@@ -25,4 +25,4 @@ CREATE TABLE products
 
 
 INSERT INTO Users VALUES ("AAAA", "aaa", "AAAAAb");
-INSERT INTO Products VALUES( 0, "Blue", "Nice blue" "9", "blue");
+INSERT INTO Products VALUES( 0, "Blue", "Nice blue", "9", "blue");
