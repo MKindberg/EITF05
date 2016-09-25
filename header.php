@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    if(isset($_COOKIE["logged in"])){
+    if(session_status() == PHP_SESSION_ACTIVE ){
         $signInOut = '<a href="signOut.php">Sign out</a>';
         $account = '<a href="account.php">Account</a>';
     }
@@ -8,7 +8,11 @@
         $signInOut = '<a href="signIn.php">Sign in</a>';
         $account = '<a href="signUp.php">Sign up</a>';
     }
-    $cart = '<a href="cart.php">Cart (' .count($_COOKIE["cart"]) . ')</a>';
+    if(isset($_COOKIE["cart"]))
+        $cart = '<a href="cart.php">Cart (' .count($_COOKIE["cart"]) . ')</a>';
+    else
+        $cart = '<a href="cart.php">Cart</a>';
+
  ?>
 <html>
 <head>

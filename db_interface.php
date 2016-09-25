@@ -117,22 +117,31 @@ class Database {
 
 //TODO remane variables?
 	public function signIn(){
+        if(session_status() == PHP_SESSION_ACTIVE )
+            return "already signed in";
 
-		$name = $password = "";
+		$username = $password = "";
 
-		$name = $_POST['name'];
+		$username = $_POST['username'];
 		$password = $_POST['password'];
 
 		$this->openConnection();
 		if(! $this->isConnected())
  			 return "Could not connect to database..";
 
-		if(! $this->userExists($name))
-			return "User " . $name . " doesn't exist";
+		if(! $this->userExists($username)){
+            $this->closeConnection();
+			return "User " . $username . " doesn't exist";
+        }
 
-		if(password_verify($password, $this->getHash($name)))
-            setcookie("logged in", "", time() + (3600), "/"); //set cookie for one hour
-	    $this->closeConnection;
+		if(password_verify($password, $this->getHash($username))){
+            session_start();
+            $this->closeConnection();
+            return "Login Successfull!";
+        }
+        
+        $this->closeConnection();
+        return "Wrong password";
 	}
 
 	public function getItem($productId){
@@ -141,7 +150,7 @@ class Database {
 	}
 
 	public function signOut(){
-		setcookie("logged in", "", time()-3600); //removes cookie
+		session_destroy;
 	}
 
 
