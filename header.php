@@ -8,9 +8,10 @@
         $signInOut = '<a href="signIn.php">Sign in</a>';
         $account = '<a href="signUp.php">Sign up</a>';
     }
-    if(isset($_COOKIE["cart"]))
-        $cart = '<a href="cart.php">Cart (' .count($_COOKIE["cart"]) . ')</a>';
-    else
+    if(isset($_COOKIE["items"])){
+        $items = json_decode($_COOKIE["items"], true);
+        $cart = '<a href="cart.php">Cart (' .array_sum($items) . ')</a>';
+    } else
         $cart = '<a href="cart.php">Cart</a>';
 
  ?>

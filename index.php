@@ -47,9 +47,9 @@ echo "
         <p class=\"product-name\">$row[1]<p>
         <p class=\"product-desc\">$row[2]</p>
         <p class=\"product-price\">Price: $row[3]</p>
-        <form action="add_to_cart.php" method="get">
-            <input type="hidden" name="item" value=$row[0]>
-            <input type="submit" value="Add to cart">
+        <form action=\"add_to_cart.php\" method=\"get\">
+            <input type=\"hidden\" name=\"item\" value=$row[0]>
+            <input type=\"submit\" value=\"Add to cart\">
         </form>
     </div>";
 
@@ -57,6 +57,13 @@ echo "
 ?>
 
 <p>We use cookies!</p>
+<?php
+if(isset($_COOKIE["items"])){
+    $items = json_decode($_COOKIE["items"], true);
+}else {
+    echo "No cookie :-(";
+}
+ ?>
 
 </body>
 </html>
