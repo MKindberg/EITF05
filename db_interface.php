@@ -130,10 +130,8 @@ class Database {
 		if(! $this->userExists($name))
 			return "User " . $name . " doesn't exist";
 
-			//get Salt
-			//hashAndSalt
-			//check hashAndSalted pwd
-        setcookie("logged in", "", time() + (3600), "/"); //set cookie for one hour
+		if(password_verify($password, $this->getHash($name)))
+            setcookie("logged in", "", time() + (3600), "/"); //set cookie for one hour
 	    $this->closeConnection;
 	}
 
@@ -185,6 +183,16 @@ class Database {
 		return $this->executeQuery($query, $param);
 
 	}
+
+    private function getHash($username){
+        $query = "SELECT hash FROM users WHERE username =?";
+		$param = array ();
+		array_push ( $param, $username );
+
+ 		$result = $this->executeQuery ($query, $param);
+
+		return $result[0][0];
+    }
 
 	/**
 	 * Execute a database query (select).

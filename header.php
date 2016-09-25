@@ -25,7 +25,6 @@
             <li><?php echo $cart; ?></li>
         </ul>
     </div>
-    <?php echo $ht; ?>
 </body>
 
 </html>
