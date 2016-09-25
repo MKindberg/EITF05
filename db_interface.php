@@ -82,13 +82,38 @@ class Database {
 	}
 
 	private function addUser($regName,$hashAndSalt,$regAdress) {
-
 		$query = "INSERT into users values(?,?,?);";
 		$params = array();
 		array_push($params,$regName,$hashAndSalt,$regAdress);
 		$result = $this->executeUpdate($query,$params);
 		return "Successfully signed up " . " Username : ". $regName . " Adress : " . $regAdress;
 	}
+
+    public function addColor(){
+        $name = $desc = $price = $color = "";
+
+        $name = $_GET['colName'];
+        $desc = $_GET['colDesc'];
+        $price = $_GET['colPrice'];
+        $color = $_GET['colCode'];
+
+        // if(!is_int($price))
+        //     return "Price must be an integer";
+        if((strlen($color) != 6 and strlen($color) != 7) or !preg_match("/[0-9A-F]{6}$/i", $color))
+            return "color must be a color code";
+        if(strlen($color) == 6)
+            $color = '#'.$color;
+
+
+        $this->openConnection();
+        if(! $this->isConnected()) {
+             return "Could not connect to database..";
+        }
+        $query = "INSERT into products (name, description, price, color) values(?,?,?,?);";
+		$params = array();
+		array_push($params, $name, $desc, $price, $color);
+		$result = $this->executeUpdate($query, $params);
+    }
 
 	private function validateInput($input) {
 
@@ -110,7 +135,7 @@ class Database {
 		$param = array ();
 		array_push ( $param, $username );
 
- 		$result = $this->executeQuery ( $query,$param);
+ 		$result = $this->executeQuery ($query, $param);
 
 		return count ( $result ) == 1;
 	}

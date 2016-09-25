@@ -13,6 +13,14 @@ if(! $database->isConnected()) {
   exit();
 }
 
+if(isset($_GET['newColor'])) {
+
+  //check all fields filled
+  $msg = $database->addColor();
+
+  echo $msg;
+}
+
 //connection successfull
 
 $result = $database->getAllProducts();
@@ -55,7 +63,17 @@ echo "
 
 }
 ?>
-
+<form name="registration" method="get" action="index.php">
+Name * </br>
+<input type="text" name="colName" value=""></br>
+Description *</br>
+<input type="text" name="colDesc" value=""></br>
+Price *</br>
+<input type="text" name="colPrice" value=""></br>
+Color code *</br>
+<input type="text" name="colCode" value=""></br>
+<input type="submit" value="Submit" name="newColor">
+</form>
 <p>We use cookies!</p>
 <?php
 if(isset($_COOKIE["items"])){
