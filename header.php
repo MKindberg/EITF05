@@ -1,8 +1,8 @@
 <?php
     session_start();
     if(isset($_SESSION["loggedIn"])){
-        $signInOut = '<a href="signOut.php" >Sign out</a>';
-        $account = '<a href="account.php">Signed in as '.$_SESSION["loggedIn"].'</a>';
+        $account = '<a href="signOut.php" >Sign out</a>';
+        $signInOut = 'Signed in as '.$_SESSION["loggedIn"];
     }
     else{
         $signInOut = '<a href="signIn.php">Sign in</a>';
