@@ -24,5 +24,5 @@ CREATE TABLE products
 
 
 
-INSERT INTO Users VALUES ("AAAA", "aaa", "AAAAAb", "AA");
-INSERT INTO Products VALUES( 0, "Blue", "Nice blue" "9", "blue"); 
+INSERT INTO Users (username, hash, adress) VALUES ("AAAA", "aaa", "AAAAAb");
+INSERT INTO Products (name, description, price, color) VALUES ('Blue', 'Ice Cold Blue', 322, 'blue');
