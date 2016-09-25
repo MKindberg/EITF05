@@ -1,14 +1,12 @@
 <?php
-
 include "header.php";
 include "db_interface.php";
 include "mysql_login_data.php";
 
-if(session_status() == PHP_SESSION_ACTIVE ){
+if(isset($_SESSION["loggedIn"]) and $_SESSION["loggedIn"]){
     header('Location: ' . 'index.php');
    die();
 }
-
     if(isset($_POST['signIn'])) {
 
       //check all fields filled
@@ -16,6 +14,10 @@ if(session_status() == PHP_SESSION_ACTIVE ){
       $msg = $database->signIn();
 
       echo $msg;
+      if(isset($_SESSION["loggedIn"])){
+          header('Location: ' . 'index.php');
+          die();
+ }
     }
 ?>
 

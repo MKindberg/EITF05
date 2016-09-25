@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
-    if(session_status() == PHP_SESSION_ACTIVE ){
-        $signInOut = '<a href="signOut.php">Sign out</a>';
+    session_start();
+    if(isset($_SESSION["loggedIn"])){
+        $signInOut = '<a href="signOut.php" >Sign out</a>';
         $account = '<a href="account.php">Account</a>';
     }
     else{
@@ -14,6 +14,8 @@
         $cart = '<a href="cart.php">Cart</a>';
 
  ?>
+<!DOCTYPE html>
+
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="header.css">

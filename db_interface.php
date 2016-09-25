@@ -1,5 +1,6 @@
 <?php
-
+if(session_status() == PHP_SESSION_NONE)
+    session_start();
 class Database {
 	private $host;
 	private $userName;
@@ -117,7 +118,7 @@ class Database {
 
 //TODO remane variables?
 	public function signIn(){
-        if(session_status() == PHP_SESSION_ACTIVE )
+        if(isset($_SESSION["loggedIn"]))
             return "already signed in";
 
 		$username = $password = "";
@@ -135,11 +136,11 @@ class Database {
         }
 
 		if(password_verify($password, $this->getHash($username))){
-            session_start();
             $this->closeConnection();
+            $_SESSION["loggedIn"] = 1;
             return "Login Successfull!";
         }
-        
+
         $this->closeConnection();
         return "Wrong password";
 	}
@@ -150,7 +151,7 @@ class Database {
 	}
 
 	public function signOut(){
-		session_destroy;
+		unset($_SESSION["loggedIn"]);
 	}
 
 
