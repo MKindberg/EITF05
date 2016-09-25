@@ -43,11 +43,14 @@ foreach ( $result as $row ) {
 
 echo "
     <div class=\"product-div\">
-    <div class=\"color-image\" style=\"background-color:$row[4]\"></div>
-    <p class=\"product-name\">$row[1]<p>
-    <p class=\"product-desc\">$row[2]</p>
-    <p class=\"product-price\">Price: $row[3]</p>
-    <a href=\"#\"><button>Add to cart</button></a>
+        <div class=\"color-image\" style=\"background-color:$row[4]\"></div>
+        <p class=\"product-name\">$row[1]<p>
+        <p class=\"product-desc\">$row[2]</p>
+        <p class=\"product-price\">Price: $row[3]</p>
+        <form action="add_to_cart.php" method="get">
+            <input type="hidden" name="item" value=$row[0]>
+            <input type="submit" value="Add to cart">
+        </form>
     </div>";
 
 }
