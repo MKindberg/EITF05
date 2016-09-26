@@ -15,6 +15,7 @@ echo $row[4]; //color
 $database = new Database( $host,$userName, $password, $database);
 $database->openConnection();
 $toPay = 0;
+echo "In cart: \n";
 foreach ($items as $colorID => $nbr) {
   $col = $database->getItem($colorID);
   $item = $col[0];
