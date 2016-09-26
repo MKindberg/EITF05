@@ -3,7 +3,7 @@ include "header.php";
 include "db_interface.php";
 include "mysql_login_data.php";
 
-if(isset($_SESSION["loggedIn"]) and $_SESSION["loggedIn"]){
+if(isset($_SESSION["loggedIn"])){
     header('Location: ' . 'index.php');
    die();
 }

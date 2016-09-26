@@ -75,13 +75,7 @@ Color code *</br>
 <input type="submit" value="Submit" name="newColor">
 </form>
 <p>We use cookies!</p>
-<?php
-if(isset($_COOKIE["items"])){
-    $items = json_decode($_COOKIE["items"], true);
-}else {
-    echo "No cookie :-(";
-}
- ?>
+<?php echo "orange";?>
 
 </body>
 </html>

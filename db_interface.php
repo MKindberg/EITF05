@@ -74,7 +74,7 @@ class Database {
 
 		//adding user to database
 		$msg = $this->addUser($regName,$hashAndSalt,$regAdress);
-        $_SESSION["loggedIn"] = $username;
+    $_SESSION["loggedIn"] = $regName;
 		//print all inputs (just for testing)
 		//$msg = $regName . $regAdress . $regPassword . $regRepassword;
 		return $msg;
@@ -171,8 +171,11 @@ class Database {
 	}
 
 	public function getItem($productId){
-		//open connection
-		//return product if exists, else error
+    $query = "SELECT * FROM products WHERE productId = ?;";
+    $param = array ();
+    array_push ( $param, $productId );
+
+		return $this->executeQuery($query, $param);
 	}
 
 	public function signOut(){
