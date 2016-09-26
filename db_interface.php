@@ -74,7 +74,7 @@ class Database {
 
 		//adding user to database
 		$msg = $this->addUser($regName,$hashAndSalt,$regAdress);
-    $_SESSION["loggedIn"] = $regName;
+        $this->login($regName);
 		//print all inputs (just for testing)
 		//$msg = $regName . $regAdress . $regPassword . $regRepassword;
 		return $msg;
@@ -162,13 +162,17 @@ class Database {
 
 		if(password_verify($password, $this->getHash($username))){
             $this->closeConnection();
-            $_SESSION["loggedIn"] = $username;
+            $this->login($username);
             return "Login Successfull!";
         }
 
         $this->closeConnection();
         return "Wrong password";
 	}
+    private function login($username){
+        $_SESSION["loggedIn"] = $username;
+        $_SESSION["token"] = hash("sha256", $username . rand());
+    }
 
 	public function getItem($productId){
     $query = "SELECT * FROM products WHERE productId = ?;";
@@ -281,13 +285,13 @@ class Database {
 /*
 TODO: here should all the hash-comparing and stuff happen
 */
-	public function login($userId) {
-			$sql = "SELECT username FROM users WHERE username = ?";
-			$result = $this->executeQuery ( $sql, array (
-					$userId
-			) );
-			return count ( $result ) == 1;
-		}
+	// public function login($userId) {
+	// 		$sql = "SELECT username FROM users WHERE username = ?";
+	// 		$result = $this->executeQuery ( $sql, array (
+	// 				$userId
+	// 		) );
+	// 		return count ( $result ) == 1;
+	// 	}
 	/*
 
 
