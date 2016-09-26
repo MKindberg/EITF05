@@ -21,7 +21,7 @@ foreach ($items as $colorID => $nbr) {
   echo "<p>$nbr of the color $item[1] for a total of ". ($nbr*$item[3]) ."</p>";
   $toPay+=$nbr*$item[3];
 }
-echo "\nTotal: $toPay";
+echo "\nTotal: $toPay \n";
 $database->closeConnection();
 
 if(isset($_SESSION["loggedIn"]))

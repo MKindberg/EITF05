@@ -75,7 +75,6 @@ Color code *</br>
 <input type="submit" value="Submit" name="newColor">
 </form>
 <p>We use cookies!</p>
-<?php echo "orange";?>
 
 </body>
 </html>
