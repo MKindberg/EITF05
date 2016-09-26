@@ -14,7 +14,6 @@ echo $row[4]; //color
 */
 $database = new Database( $host,$userName, $password, $database);
 $database->openConnection();
-$toPay = 0;
 echo "Payment successfully complete!\nYou have bought:";
 foreach ($items as $colorID => $nbr) {
   $col = $database->getItem($colorID);
@@ -23,9 +22,9 @@ foreach ($items as $colorID => $nbr) {
   for ($i=0; $i < $nbr; $i++) {
     echo "<div style=\"background-color:$item[4]; height: 15px; width: 30px; display: inline-block;\"></div>";
   }
-  $toPay+=$nbr*$item[3];
 }
 $database->closeConnection();
+setcookie("items", "", time()-3600);
 ?>
 <!DOCTYPE html>
 <html>
