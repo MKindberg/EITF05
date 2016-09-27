@@ -7,6 +7,8 @@ include "mysql_login_data.php";
 if(isset($_COOKIE["items"])){
 $items = json_decode($_COOKIE["items"], true);
 
+
+
 /*
 echo $row[0]; // productId
 echo $row[1]; // name
@@ -27,9 +29,17 @@ foreach ($items as $colorID => $nbr) {
 echo "\nTotal: $toPay \n";
 $database->closeConnection();
 }
-if(isset($_SESSION["loggedIn"]) && isset($_COOKIE["items"]))
-  echo "<a href=\".\checkout.php\"><button>Go to payment</button></a>";
-else
+
+if(isset($_SESSION["loggedIn"])){
+  if(isset($_COOKIE["items"])){
+      echo "<a href=\".\checkout.php\"><button>Go to payment</button></a>";
+      echo "<a href=\"emptycart.php\"><button>Empty Cart</button></a>";
+    } else {
+  echo "Your cart is empty!";
+  }
+} else {
   echo "<p>You have to <a href=\".\signIn.php\">sign in</a> to buy.</p>";
+}
+
 
 ?>
