@@ -3,6 +3,14 @@
 include "header.php";
 include "db_interface.php";
 include "mysql_login_data.php";
+
+
+
+if (! ($_POST['token'] == $_SESSION['token']) ) {
+  echo "Payment could not be completed. <br> Back to cart: <a href='cart.php'>Cart</a>";
+  exit();
+}
+
 $items = json_decode($_COOKIE["items"], true);
 
 /*

@@ -1,6 +1,11 @@
 <?php
 
 include "header.php";
+include "db_interface.php";
+
+$token = $_SESSION['token'] = bin2hex( openssl_random_pseudo_bytes(32));
+
+
 
 ?>
 
@@ -34,6 +39,8 @@ include "header.php";
   <input type="text" name="cardCVD" value="" maxlength="3"></br>
 
   <input type="submit" value="confirm" name="payment">
+
+  <input type="hidden" name="token" value="<?php echo $token; ?>" />
   </form>
 
 
