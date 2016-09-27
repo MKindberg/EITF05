@@ -186,7 +186,12 @@ class Database {
 		unset($_SESSION["loggedIn"]);
 	}
 
-
+  public function emptyCart(){
+    if (isset($_COOKIE['items'])) {
+    unset($_COOKIE['items']);
+    setcookie('items', '', time() - 3600, '/');
+    }
+  }
 
 	public function openConnection() {
 		try {

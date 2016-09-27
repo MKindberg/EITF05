@@ -23,8 +23,9 @@ foreach ($items as $colorID => $nbr) {
     echo "<div style=\"background-color:$item[4]; height: 15px; width: 30px; display: inline-block;\"></div>";
   }
 }
+$database->emptyCart();
 $database->closeConnection();
-setcookie("items", "", time()-3600);
+
 ?>
 <!DOCTYPE html>
 <html>
