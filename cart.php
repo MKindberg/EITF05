@@ -6,7 +6,6 @@ include "mysql_login_data.php";
 
 if(isset($_COOKIE["items"])){
 $items = json_decode($_COOKIE["items"], true);
-}
 
 /*
 echo $row[0]; // productId
@@ -27,7 +26,7 @@ foreach ($items as $colorID => $nbr) {
 }
 echo "\nTotal: $toPay \n";
 $database->closeConnection();
-
+}
 if(isset($_SESSION["loggedIn"]) && isset($_COOKIE["items"]))
   echo "<a href=\".\checkout.php\"><button>Go to payment</button></a>";
 else
