@@ -33,13 +33,17 @@ $database->closeConnection();
 if(isset($_SESSION["loggedIn"])){
   if(isset($_COOKIE["items"])){
       echo "<a href=\".\checkout.php\"><button>Go to payment</button></a>";
-      echo "<a href=\"emptycart.php\"><button>Empty Cart</button></a>";
     } else {
-  echo "Your cart is empty!";
-  }
-} else {
+        echo "Your cart is empty!";
+    }
+  } else {
   echo "<p>You have to <a href=\".\signIn.php\">sign in</a> to buy.</p>";
 }
+
+if (isset($_COOKIE["items"])) {
+        echo "<a href=\"emptycart.php\"><button>Empty Cart</button></a>";
+}
+
 
 
 ?>
