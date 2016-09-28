@@ -109,10 +109,14 @@ class Database {
         if(! $this->isConnected()) {
              return "Could not connect to database..";
         }
-        $query = "INSERT into products (name, description, price, color) values(?,?,?,?);";
-		$params = array();
-		array_push($params, $name, $desc, $price, $color);
+        $query = "INSERT INTO products (name, description, price, color) VALUES(";
+        $query = $query . "\"" . $name . "\", \"" . $desc . "\", " . $price . ",\""  . $color ."\");";
+        $params = array();
+        //$query = "INSERT INTO products (name, description, price, color) VALUES(?,?,?,?);";
+		//array_push($params, $name, $desc, $price, $color);
 		$result = $this->executeUpdate($query, $params);
+
+
     }
 
 	private function validateInput($input) {
@@ -141,7 +145,6 @@ class Database {
 	}
 
 
-//TODO remane variables?
 	public function signIn(){
         if(isset($_SESSION["loggedIn"]))
             return "already signed in";

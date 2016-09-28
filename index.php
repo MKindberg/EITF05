@@ -63,7 +63,7 @@ echo "
 
 }
 ?>
-<form name="registration" method="get" action="index.php">
+<form name="newColor" method="get" action="index.php">
 Name * </br>
 <input type="text" name="colName" value=""></br>
 Description *</br>
