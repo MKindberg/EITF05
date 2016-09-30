@@ -85,6 +85,7 @@ Color code *</br>
 ?>
 
 
+
 <p style="vertical-align : bottom;">We use cookies!</p>
 
 </body>

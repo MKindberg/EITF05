@@ -3,8 +3,10 @@ include "header.php";
 include "db_interface.php";
 include "mysql_login_data.php";
 include "token_check.php";
+include "captcha.php";
 
 $token = $_SESSION['token'] = bin2hex( openssl_random_pseudo_bytes(32));
+$rand = rand(0,2);
 
 
 if(isset($_SESSION["loggedIn"])){
@@ -37,9 +39,17 @@ if(isset($_SESSION["loggedIn"])){
     Username:<br>
     <input type="text" name="username"><br>
     Password:<br>
-    <input type="password" name="password"><br>
+    <input type="password" name="password"><br><br>
+
+    <img src="captcha_images/<?php echo $rand ?>.jpg"   width="150" />
+    <br><br>
+    Type what you see!<br>
+    <input type="text" name="captchaInput"><br>
+
     <input type="submit" value="Sign in" name="signIn">
     <input type="hidden" name="token" value="<?php echo $token; ?>"/>
+
+    <input type="hidden" name="rand" value="<?php echo $rand; ?>"/>
   </form>
 </body>
 </html>
