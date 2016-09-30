@@ -90,12 +90,13 @@ class Database {
 	}
 
     public function addColor(){
-        $name = $desc = $price = $color = "";
+        $name = $desc = $price = $color = $user = "";
 
         $name = $_GET['colName'];
         $desc = $_GET['colDesc'];
         $price = $_GET['colPrice'];
         $color = $_GET['colCode'];
+	$user = $_SESSION['loggedIn'];
 
         // if(!is_int($price))
         //     return "Price must be an integer";
@@ -109,11 +110,11 @@ class Database {
         if(! $this->isConnected()) {
              return "Could not connect to database..";
         }
-        $query = "INSERT INTO products (name, description, price, color) VALUES(";
-        $query = $query . "\"" . $name . "\", \"" . $desc . "\", " . $price . ",\""  . $color ."\");";
+        $query = "INSERT INTO products (name, description, price, color, username) VALUES(";
+        $query = $query . "\"" . $name . "\", \"" . $desc . "\", " . $price . ",\""  . $color . "\",\"" . $user ."\");";
         $params = array();
-        //$query = "INSERT INTO products (name, description, price, color) VALUES(?,?,?,?);";
-		//array_push($params, $name, $desc, $price, $color);
+        //$query = "INSERT INTO products (name, description, price, color, username) VALUES(?,?,?,?,?);";
+		    //array_push($params, $name, $desc, $price, $color, $user);
 		$result = $this->executeUpdate($query, $params);
 
 
@@ -290,21 +291,7 @@ class Database {
 		return $affected_rows;
 	}
 
-/*
-TODO: here should all the hash-comparing and stuff happen
-*/
-	// public function login($userId) {
-	// 		$sql = "SELECT username FROM users WHERE username = ?";
-	// 		$result = $this->executeQuery ( $sql, array (
-	// 				$userId
-	// 		) );
-	// 		return count ( $result ) == 1;
-	// 	}
-	/*
 
-
-
-	*/
 
 
 

@@ -55,6 +55,7 @@ echo "
         <p class=\"product-name\">$row[1]<p>
         <p class=\"product-desc\">$row[2]</p>
         <p class=\"product-price\">Price: $row[3]</p>
+	<p class=\"product-user\">Uploaded by: $row[5]</p>
         <form action=\"add_to_cart.php\" method=\"get\">
             <input type=\"hidden\" name=\"item\" value=$row[0]>
             <input type=\"submit\" value=\"Add to cart\">
@@ -62,8 +63,9 @@ echo "
     </div>";
 
 }
-?>
-<form name="newColor" method="get" action="index.php">
+
+if(isset($_SESSION['loggedIn'])){
+echo '<form name="newColor" method="get" action="index.php">
 Name * </br>
 <input type="text" name="colName" value=""></br>
 Description *</br>
@@ -73,8 +75,12 @@ Price *</br>
 Color code *</br>
 <input type="text" name="colCode" value=""></br>
 <input type="submit" value="Submit" name="newColor">
-</form>
-<p>We use cookies!</p>
+</form>';
+}
+?>
+
+
+<p style="vertical-align : bottom;">We use cookies!</p>
 
 </body>
 </html>

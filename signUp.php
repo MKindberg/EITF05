@@ -10,7 +10,8 @@ include "mysql_login_data.php";
       $database = new Database( $host,$userName, $password, $database);
       $msg = $database->signUp();
 
-      echo $msg;
+      header('Location: ' . 'index.php');
+      die();
     }
 
 ?>
