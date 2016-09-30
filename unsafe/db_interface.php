@@ -118,7 +118,7 @@ class Database {
         $query = $query . "\"" . $name . "\", \"" . $desc . "\", " . $price . ",\""  . $color . "\",\"" . $user ."\");";
         $params = array();
         //$query = "INSERT INTO products (name, description, price, color, username) VALUES(?,?,?,?,?);";
-		    //array_push($params, $name, $desc, $price, $color, $user);
+		//array_push($params, $name, $desc, $price, $color, $user);
 
 		$result = $this->executeUpdate($query, $params);
 

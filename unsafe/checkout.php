@@ -3,8 +3,6 @@
 include "header.php";
 include "db_interface.php";
 
-$token = $_SESSION['token'] = bin2hex( openssl_random_pseudo_bytes(32));
-
 
 
 ?>
@@ -40,7 +38,6 @@ $token = $_SESSION['token'] = bin2hex( openssl_random_pseudo_bytes(32));
 
   <input type="submit" value="confirm" name="payment">
 
-  <input type="hidden" name="token" value="<?php echo $token; ?>" />
   </form>
 
 

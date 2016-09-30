@@ -96,7 +96,7 @@ class Database {
         $desc = $_GET['colDesc'];
         $price = $_GET['colPrice'];
         $color = $_GET['colCode'];
-	      $user = $_SESSION['loggedIn'];
+	    $user = $_SESSION['loggedIn'];
 
         // if(!is_int($price))
         //     return "Price must be an integer";
@@ -110,15 +110,13 @@ class Database {
         if(! $this->isConnected()) {
              return "Could not connect to database..";
         }
-        // $name = $this->validateInput($name);
-        // $desc = $this->validateInput($desc);
-        // $price = $this->validateInput($price);
-        // $color = $this->validateInput($color);
-        $query = "INSERT INTO products (name, description, price, color, username) VALUES(";
-        $query = $query . "\"" . $name . "\", \"" . $desc . "\", " . $price . ",\""  . $color . "\",\"" . $user ."\");";
+        $name = $this->validateInput($name);
+        $desc = $this->validateInput($desc);
+        $price = $this->validateInput($price);
+        $color = $this->validateInput($color);
         $params = array();
-        //$query = "INSERT INTO products (name, description, price, color, username) VALUES(?,?,?,?,?);";
-		    //array_push($params, $name, $desc, $price, $color, $user);
+        $query = "INSERT INTO products (name, description, price, color, username) VALUES(?,?,?,?,?);";
+		array_push($params, $name, $desc, $price, $color, $user);
 
 		$result = $this->executeUpdate($query, $params);
 
