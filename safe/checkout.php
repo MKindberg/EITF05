@@ -4,7 +4,7 @@ include "header.php";
 include "db_interface.php";
 include "token_check.php";
 
-
+$token = $_SESSION['token'] = bin2hex( openssl_random_pseudo_bytes(32));
 
 ?>
 
