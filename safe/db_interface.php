@@ -16,7 +16,6 @@ class Database {
 	}
 
 	public function signUp(){
-    sleep(1);
 		$pwdMinLen = 8;
 
 		$regName = $regAdress = $regPassword = $regRepassword = "";
@@ -150,7 +149,6 @@ class Database {
 
 
 	public function signIn(){
-    sleep(1);
         if(isset($_SESSION["loggedIn"]))
             return "already signed in";
 
