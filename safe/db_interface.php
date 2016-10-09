@@ -176,6 +176,7 @@ class Database {
         return "Wrong password";
 	}
     private function login($username){
+        session_regenerate_id(); //prevent session fixation attack
         $_SESSION["loggedIn"] = $username;
         $_SESSION["token"] = hash("sha256", $username . rand());
     }
@@ -189,7 +190,8 @@ class Database {
 	}
 
 	public function signOut(){
-		unset($_SESSION["loggedIn"]);
+		//unset($_SESSION["loggedIn"]);
+    session_destroy(); // deletes everyting accociated to session
 	}
 
   public function emptyCart(){

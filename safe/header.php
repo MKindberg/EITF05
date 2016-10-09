@@ -1,5 +1,12 @@
 <?php
     session_start();
+
+    if (!isset($_SESSION['ServGen'])) {
+      unset($_SESSION["loggedIn"]);
+    }
+    session_regenerate_id();
+    $_SESSION['ServGen']= true;
+
     if(isset($_SESSION["loggedIn"])){
         $account = '<a href="signOut.php" >Sign out</a>';
         $signInOut = 'Signed in as '.$_SESSION["loggedIn"];
