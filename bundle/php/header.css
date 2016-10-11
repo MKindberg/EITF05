@@ -1,0 +1,40 @@
+#navbar{
+    background-color: pink;
+    height: 45px;
+    margin:auto;
+    width: 70%;
+    border: 2px solid grey;
+    padding: 0px;
+    overflow: hidden;
+      font-size: 25px;
+}
+
+#navbar p {
+    display: inline;
+    float: left;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+#navbar ul, li {
+    display: inline;
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+
+#navbar li:hover {
+    background-color: red;
+}
+
+@media only screen and (max-width: 700px) {
+
+   #navbar { font-size: 20px; }
+
+}
+@media only screen and (max-width: 600px) {
+
+   #navbar { font-size: 15px; }
+
+}

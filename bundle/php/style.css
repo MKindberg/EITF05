@@ -1,0 +1,30 @@
+
+.product-div {
+    width: 250px;
+    border: 1px solid black;
+    padding : 5px;
+    float: left;
+    box-shadow: 6px 6px 3px #888888;
+    margin: 5px;
+}
+
+.product-desc {
+}
+
+.product-price {
+    font-weight: bold;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.color-image {
+    width: 100px;
+    height: 100px;
+}
+
+.small-text {
+
+	font-size: 80%;
+}
